@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for product in object_list %}
+        <hr>
+        <p>Title: {{product.title}}</p>
+        <p>Price: {{product.price}}</p>
+        <p> Categorys: | 
+            {% for category in product.categorys.all%}
+                <span>{{category.name}} | </span>
+            {% endfor %}
+        </p>
+        <p>
+            | <a href="{% url 'product_detail' product.id %}">View</a>
+            | <a href="{% url 'product_update' product.id %}">Change</a>
+            | <a href="{% url 'product_delete' product.id %}">Delete</a>
+            |
+        </p>
+        <hr>
+    {% endfor %}
+{% endblock %}
